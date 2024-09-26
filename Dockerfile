@@ -9,13 +9,13 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 # Копируем файлы зависимостей
-COPY requirements.txt /app/
+COPY requirements.txt .
 
 # Устанавливаем зависимости
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Копируем все файлы приложения
-COPY . /app/
-
+COPY ./link_storage /app
+RUN python manage.py collectstatic --noinput
 # Команда для запуска сервера
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "linkstorage.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "link_storage.wsgi:application"]
