@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: test
+    volumes:
+      - ./:/src
+    ports:
+      - '8000:8000'
+    depends_on:
+      - pgdb
+
+  pgdb:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=django
+      - POSTGRES_USER=django
+      - POSTGRES_PASSWORD=django
+    container_name: pgdb
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
