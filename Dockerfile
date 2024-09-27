@@ -16,6 +16,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Копируем все файлы приложения
 COPY ./link_storage /app
-RUN python manage.py collectstatic
+
 # Команда для запуска сервера
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "link_storage.wsgi:application", "python manage.py migrate"]
