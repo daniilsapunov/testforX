@@ -3,10 +3,12 @@
 1) Склонировать проект
 2) docker-compose build
 3) docker-compose up
-4) перейте по ссылке
-5) Лучше использовать Postman 
+4) docker ps(взять id контейнера)
+5) docker exec -it (сюда id) bash
+6) python manage.py migrate
+7) python manage.py createsuperuser(для админки)
 6) /api/swagger/ - свагер
-7) Скрипт
+Скрипт
 SELECT 
     u.id AS user_id,
     u.username,
